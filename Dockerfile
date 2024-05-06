@@ -51,7 +51,19 @@ RUN apt install -y ros-humble-controller-interface ros-humble-dwb-critics ros-hu
     ros-humble-controller-manager libsuitesparse-dev ros-humble-libg2o ros-humble-transmission-interface 
 RUN apt install -y libceres-dev ros-humble-tf-transformations ros-humble-demo-nodes-cpp ros-humble-soccer-vision-2d-msgs \
     ros-humble-soccer-vision-3d-msgs
-RUN pip install transforms3d opencv-contrib-python
+
+# Install packages that lead ik_walk lib to correct execution
+RUN apt install -y software-properties-common
+RUN add-apt-repository ppa:ubuntu-toolchain-r/test
+RUN apt update
+RUN apt-get update
+RUN apt-get install -y --only-upgrade libstdc++6
+
+# Install tkinter python package
+RUN apt install -y python3.10-tk
+
+# Install python packages for simulation process
+RUN pip install setuptools transforms3d opencv-contrib-python
 # Configure env for ROS_PACKAGE_PATH from copied repos to be able to correctly load URDF
 WORKDIR /root
 ENV ROS_PACKAGE_PATH "$ROS_PACKAGE_PATH:/root/workspace/src"

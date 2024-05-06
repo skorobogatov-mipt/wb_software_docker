@@ -1,1 +1,1 @@
-docker build -t starkit/stellazh .
+docker build -t starkit/robot_software .
