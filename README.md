@@ -27,12 +27,12 @@
 
     `sudo ./run_container.sh`
 
-4. __Start publisher of ik_walk:__
+4. __Start publisher of ik_walk: and tuner of its params__
 
     `root@your_laptop:~/# cd workspace` \
     `root@your_laptop:~/workspace/# colcon build` \
     `root@your_laptop:~/workspace/# source install/setup.bash` \
-    `root@your_laptop:~/workspace/# ros2 run controller publisher`
+    `root@your_laptop:~/workspace/# ros2 run controller publisher_tune`
 
 5. __Start listener to robot's cameras:__
 
@@ -40,4 +40,10 @@
     `root@your_laptop:~/workspace/# colcon build` \
     `root@your_laptop:~/workspace/# source install/setup.bash` \
     `root@your_laptop:~/workspace/# ros2 run controller listener`
-    
+
+6. __Start sprint behavior:__
+
+    `root@your_laptop:~/# cd workspace` \
+    `root@your_laptop:~/workspace/# colcon build` \
+    `root@your_laptop:~/workspace/# source install/setup.bash` \
+    `root@your_laptop:~/workspace/# ros2 run controller sprint`
