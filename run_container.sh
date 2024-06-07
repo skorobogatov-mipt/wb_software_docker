@@ -1,7 +1,7 @@
 # Allow client connections to x server from any host
 xhost +
 
-container_name=stellazh_workspace
+container_name=robot_workspace
 
 if [ "$( docker container inspect -f '{{.State.Status}}' $container_name )" == "running" ] 
 then 
@@ -16,6 +16,6 @@ docker run -it --rm \
 -e DISPLAY=${DISPLAY} \
 -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
 --mount type=bind,source="$(pwd)",target=/root/user_logs \
---network host starkit/stellazh /bin/bash
+--network my-net starkit/robot_software /bin/bash
 
 
