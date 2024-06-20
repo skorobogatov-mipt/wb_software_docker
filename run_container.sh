@@ -8,15 +8,14 @@ then
     echo "Connected to existed $container_name container"
     docker exec -it $container_name /bin/bash
 else
-    docker network create my-net
     # Run container
     docker run -it --rm \
     --name $container_name \
     -e DISPLAY=${DISPLAY} \
-    --mount type=bind,source="$(pwd)/../robot_software_workspace/install",target=/root/workspace/install \
+    --mount type=bind,source="$(pwd)/../robot_software_workspace",target=/root/workspace \
     -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
-    --network my-net starkit/robot_software /bin/bash #/root/entrypoint.sh
-    # -e WORKSPACE_DOWNLOAD_LINK=https://storage.yandexcloud.net/platform-test-s3/robot_software_artifacts.zip \
+    -e WORKSPACE_DOWNLOAD_LINK=https://storage.yandexcloud.net/platform-test-s3/robot_software_artifacts.zip \
+    --ipc="host" --network host starkit/robot_software /bin/bash #/root/entrypoint.sh
     fi
 
 
