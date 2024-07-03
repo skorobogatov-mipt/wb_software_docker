@@ -15,7 +15,9 @@ docker run -it --rm \
 --name $container_name \
 -e DISPLAY=${DISPLAY} \
 -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+--mount type=bind,source="$(pwd)/../robot_software_workspace",target=/root/workspace \
 --mount type=bind,source="$(pwd)",target=/root/user_logs \
---network my-net starkit/robot_software /bin/bash
+--ipc="host" \
+--network host starkit/robot_software /bin/bash
 
 
