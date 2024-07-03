@@ -12,6 +12,10 @@ __Build project__:
 
 `cd workspace && colcon build`
 
+__Update variables__:
+
+`source install/setup.bash`
+
 __Start walk tuner__:
 
 `ros2 run controller publisher`
