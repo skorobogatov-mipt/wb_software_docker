@@ -12,10 +12,10 @@ else
     docker run -it --rm \
     --name $container_name \
     -e DISPLAY=${DISPLAY} \
-    --mount type=bind,source="$(pwd)/../robot_software_workspace",target=/root/workspace \
     -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
     -e WORKSPACE_DOWNLOAD_LINK=https://storage.yandexcloud.net/platform-test-s3/robot_software.zip \
-    --ipc="host" --network host starkit/robot_software /bin/bash #/root/entrypoint.sh
-    fi
+    --ipc="host" --network host waveregistry.mipt.ru/starkit.edu/robot_software_docker:latest /bin/bash #/root/entrypoint.sh
+    # --mount type=bind,source="$(pwd)/../robot_software_workspace",target=/root/workspace \
+fi
 
 
