@@ -21,6 +21,9 @@ rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt && rm -rf /var/cache/debcon
 # Install python packages for simulation process 
 RUN pip install --no-cache-dir transforms3d opencv-contrib-python websockets scipy
 
+# fix installation numpy>=2.0.0
+RUN pip install --no-cache-dir numpy==1.26.4
+
 ENV MUJOCO_GL "osmesa"
 
 ADD entrypoint.sh /root/entrypoint.sh
