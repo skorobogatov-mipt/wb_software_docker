@@ -8,8 +8,23 @@ RUN apt update && apt install -qqy software-properties-common && add-apt-reposit
 RUN apt update && apt install -qqy --only-upgrade libstdc++6 && \
     rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt && rm -rf /var/cache/debconf
 
-RUN apt update && apt install -qqy python3 python3-pip unzip wget git cmake python3-setuptools python3.10-tk \
-    python3-bloom python3-colcon-common-extensions python3-colcon-mixin python3-rosdep python3-vcstool && \
+RUN apt update && apt install -qqy \
+python3 \
+python3-pip \
+unzip \
+wget \
+git \
+cmake \
+python3-setuptools \
+python3.10-tk \
+libgl1-mesa-glx \
+libosmesa6 \
+python3-bloom \
+python3-colcon-common-extensions \
+python3-colcon-mixin \
+python3-rosdep \
+python3-vcstool \
+&& \
     rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt && rm -rf /var/cache/debconf
 
 RUN pip install --no-cache-dir --upgrade pip
@@ -19,12 +34,19 @@ RUN apt update && apt install -qqy ros-humble-vision-opencv ros-humble-image-tra
 rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt && rm -rf /var/cache/debconf
 
 # Install python packages for simulation process 
-RUN pip install --no-cache-dir transforms3d opencv-contrib-python websockets scipy
+RUN pip install --no-cache-dir \
+        transforms3d \
+        opencv-contrib-python \
+        websockets \
+        scipy \
+        pytorch-kinematics \
+        pin
 
 # fix installation numpy>=2.0.0
-RUN pip install --no-cache-dir numpy==1.26.4
+# RUN pip install --no-cache-dir numpy==1.26.4
 
 ENV MUJOCO_GL "osmesa"
+RUN pip install --no-cache-dir mujoco
 
 ADD entrypoint.sh /root/entrypoint.sh
 
