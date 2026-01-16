@@ -39,8 +39,9 @@ RUN pip install --no-cache-dir \
         opencv-contrib-python \
         websockets \
         scipy \
-        pytorch-kinematics \
-        pin
+        pin \
+        pin-pink \
+        qpsolvers[open_source_solvers]
 
 # fix installation numpy>=2.0.0
 # RUN pip install --no-cache-dir numpy==1.26.4
