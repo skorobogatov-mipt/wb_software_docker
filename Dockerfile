@@ -41,7 +41,9 @@ RUN pip install --no-cache-dir \
         scipy \
         pin \
         pin-pink \
-        qpsolvers[open_source_solvers]
+        qpsolvers[open_source_solvers] \
+        meshcat \
+        meshcat_shapes
 
 # fix installation numpy>=2.0.0
 # RUN pip install --no-cache-dir numpy==1.26.4
