@@ -51,6 +51,10 @@ RUN pip install --no-cache-dir \
 ENV MUJOCO_GL "osmesa"
 RUN pip install --no-cache-dir mujoco
 
+# install qt5 for imshow
+RUN apt update && apt install -qqy python3-pyqt5 && \
+rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt && rm -rf /var/cache/debconf
+
 ADD entrypoint.sh /root/entrypoint.sh
 
 # Configure env for ROS_PACKAGE_PATH from copied repos to be able to correctly load URDF
