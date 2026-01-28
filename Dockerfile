@@ -56,11 +56,16 @@ RUN apt update && apt install -qqy python3-pyqt5 && \
 rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt && rm -rf /var/cache/debconf
 
 ADD entrypoint.sh /root/entrypoint.sh
+RUN pip install empy
 
 # Configure env for ROS_PACKAGE_PATH from copied repos to be able to correctly load URDF
 WORKDIR /root/workspace
+# RUN source /opt/ros/humble/setup.bash && colcon build
+# RUN colcon build
 
-# ENTRYPOINT [ "bash", "/root/entrypoint.sh" ]
+# RUN source /root/workspace/install/setup.bash
+
+ENTRYPOINT [ "bash", "/root/entrypoint.sh" ]
 
 
 
